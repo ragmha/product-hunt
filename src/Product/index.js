@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Product extends Component {
   handleUpVote() {
-    this.props.onUpVote(this.props.id);
+    this.props.onUpVote(this.props.id, true);
   }
   handleDownVote() {
     this.props.onDownVote(this.props.id);
