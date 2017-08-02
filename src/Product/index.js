@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 class Product extends Component {
-  handleVote() {
-    this.props.onVote(this.props.id);
+  handleUpVote() {
+    this.props.onUpVote(this.props.id);
+  }
+  handleDownVote() {
+    this.props.onDownVote(this.props.id);
   }
 
   render() {
@@ -14,10 +17,13 @@ class Product extends Component {
         </div>
         <div className="middle aligned content">
           <div className="header">
-            <a onClick={this.handleVote.bind(this)}>
+            {props.votes}
+            <a onClick={this.handleUpVote.bind(this)}>
               <i className="large caret up icon" />
             </a>
-            {props.votes}
+            <a onClick={this.handleDownVote.bind(this)}>
+              <i className="large caret down icon" />
+            </a>
           </div>
           <div className="description">
             <a href={props.url}>

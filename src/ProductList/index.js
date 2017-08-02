@@ -10,6 +10,7 @@ class ProductList extends Component {
       products: [],
     };
     this.handleProductUpVote = this.handleProductUpVote.bind(this);
+    this.handleProductDownVote = this.handleProductDownVote.bind(this);
   }
 
   componentDidMount() {
@@ -32,11 +33,23 @@ class ProductList extends Component {
     this.updateState();
   }
 
+  handleProductDownVote(productId) {
+    Data.forEach(elem => {
+      if (elem.id === productId) {
+        elem.votes -= 1;
+        return;
+      }
+    });
+
+    this.updateState();
+  }
+
   renderProducts() {
     return this.state.products.map(product =>
       <Product
         key={product.id}
-        onVote={this.handleProductUpVote}
+        onUpVote={this.handleProductUpVote}
+        onDownVote={this.handleProductDownVote}
         {...product}
       />
     );
