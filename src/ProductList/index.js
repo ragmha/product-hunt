@@ -7,13 +7,38 @@ class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: Data(),
+      products: [],
     };
+    this.handleProductUpVote = this.handleProductUpVote.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateState();
+  }
+
+  updateState() {
+    const products = Data.sort((a, b) => b.votes - a.votes);
+    this.setState({ products: products });
+  }
+
+  handleProductUpVote(productId) {
+    Data.forEach(elem => {
+      if (elem.id === productId) {
+        elem.votes += 1;
+        return;
+      }
+    });
+
+    this.updateState();
   }
 
   renderProducts() {
     return this.state.products.map(product =>
-      <Product key={product.id} {...product} />
+      <Product
+        key={product.id}
+        onVote={this.handleProductUpVote}
+        {...product}
+      />
     );
   }
   render() {

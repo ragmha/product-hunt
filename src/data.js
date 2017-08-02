@@ -4,7 +4,7 @@ function generateVoteCount() {
   return Math.floor(Math.random() * 50 + 15);
 }
 
-export default function() {
+function Data() {
   return [
     {
       id: 1,
@@ -45,3 +45,5 @@ export default function() {
     },
   ];
 }
+
+export default Data();
